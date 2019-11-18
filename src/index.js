@@ -1,19 +1,16 @@
-import React, { Fragment, Component } from "react";
-import store from "./store";
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { Route } from "react-router-dom";
+import store from "./store";
 
-import Rooms from "./Rooms";
-import Main from "./Main";
-
-export default class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <Route path="/" component={Main} exact />
-
-        <Route path="/room/:name" component={Room} />
-      </Provider>
-    );
-  }
-}
+ReactDOM.render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById("root")
+);

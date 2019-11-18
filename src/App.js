@@ -1,17 +1,17 @@
 import React, { Fragment, Component } from "react";
 import { Route } from "react-router-dom";
+import LoginForm from "./components/LoginForm";
 
-import Main from "./Main";
-import Room from "./Room";
+// import Main from "./Main";
+// import Room from "./Room";
 
 export default class App extends Component {
   render() {
     return (
-      <Fragment>
-        <Route path="/" component={Rooms} exact />
+      <LoginForm />
+      // <Fragment>
 
-        <Route path="/room/:name" component={Room} />
-      </Fragment>
+      // </Fragment>
     );
   }
 }
