@@ -1,2 +1,2 @@
-// export const url = "https://polar-tundra-82949.herokuapp.com"; // heroku
-export const url = "http://localhost:4000";
+export const url = "https://mysterious-gorge-11143.herokuapp.com/"; // heroku
+// export const url = "http://localhost:4000";

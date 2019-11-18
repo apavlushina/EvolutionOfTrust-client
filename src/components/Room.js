@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import superagent from "superagent";
-import { url } from "../constants";
+// import superagent from "superagent";
+// import { url } from "../constants";
 import { Link } from "react-router-dom";
 
 export default class Room extends Component {
