@@ -4,7 +4,7 @@ const baseUrl = "http://localhost:4000";
 function doLogin(payload) {
   return {
     type: LOGIN,
-    payload
+    payload: payload.jwt
   };
 }
 export const login = (email, password) => dispatch => {

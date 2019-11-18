@@ -15,20 +15,10 @@ export const signup = (name, email, password) => dispatch => {
   request
     .post(`${baseUrl}/users`)
     .send({ name, email, password })
-    .then(response => console.log(response))
+    .then(response => {
+      console.log(response.text);
+      const action = doLogin(response.text);
+      dispatch(action);
+    })
     .catch(console.error);
-  //   request
-  //     .post(`${baseUrl}/login`)
-  //     .send({ email, password })
-  //     .then(response => {
-  //       console.log("response", response);
-  //       const action = doLogin(response.body);
-  //       dispatch(action);
-  //     })
-
-  // .then(response => {
-  //   console.log("response", response);
-  //   const action = doLogin(response.body);
-  //   dispatch(action);
-  // })
 };
