@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import superagent from "superagent";
 import { Link } from "react-router-dom";
 import { url } from "../constants";
+import { connect } from "react-redux";
 
-//gotta change url to
-export default class Rooms extends Component {
+class Rooms extends Component {
   state = {
     rooms: [], // what rooms has arrived
     value: "" // what room name is someone writing right now
@@ -85,3 +85,5 @@ export default class Rooms extends Component {
     );
   }
 }
+
+export default connect()(Rooms);
