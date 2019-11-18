@@ -1,12 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React, { Fragment, Component } from "react";
+import store from "./store";
+import { Provider } from "react-redux";
+import { Route } from "react-router-dom";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import Rooms from "./Rooms";
+import Main from "./Main";
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+export default class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <Route path="/" component={Main} exact />
+
+        <Route path="/room/:name" component={Room} />
+      </Provider>
+    );
+  }
+}
