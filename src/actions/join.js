@@ -22,13 +22,13 @@ function doJoin(payload) {
 // };
 
 export const join = (jwt, roomName) => dispatch => {
-  console.log("dispatch test");
+  //   console.log("dispatch test");
 
   request
     .put(`${baseUrl}/users/join`)
     .send({ jwt, roomName })
     .then(response => {
-      console.log("response", response);
+      //   console.log("response", response);
       const action = doJoin(response.body);
       dispatch(action);
     })

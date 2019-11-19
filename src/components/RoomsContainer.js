@@ -12,7 +12,7 @@ class RoomsContainer extends Component {
   stream = new EventSource(`${url}/stream`); // EventSource is built in in JS; argument is where we connect to the stream
 
   componentDidMount = () => {
-    console.log("component did mount");
+    // console.log("component did mount");
     // something that happens one time should be put here: showing messages
     this.stream.onmessage = event => {
       // the onmessage property catches the stream data that is sent to the client (what was passed to stream.send in the backend)
@@ -28,7 +28,7 @@ class RoomsContainer extends Component {
         this.props.addRoom(parsed); // remember? setState has to take an argument of the state OBJECT, and it sets the property whichever you puts into the state object as argument
       }
 
-      console.log("data test: ", data);
+      // console.log("data test: ", data);
     };
   };
 

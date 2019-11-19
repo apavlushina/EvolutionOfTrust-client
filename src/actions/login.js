@@ -14,7 +14,7 @@ export const login = (email, password) => dispatch => {
     .post(`${baseUrl}/login`)
     .send({ email, password })
     .then(response => {
-      console.log("response", response);
+      // console.log("response", response);
       const action = doLogin(response.body);
       dispatch(action);
     })
