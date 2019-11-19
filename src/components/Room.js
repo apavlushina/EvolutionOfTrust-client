@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { Fragment, Component } from "react";
 // import superagent from "superagent";
 // import { url } from "../constants";
 import { Link } from "react-router-dom";
 
-export default class Room extends Component {
+export default function Room(props) {
   state = {
     messages: [],
     value: ""
@@ -75,24 +75,11 @@ export default class Room extends Component {
     // ));
 
     return (
-      //   <div>
-      //     <form onSubmit={this.onSubmit}>
-      //       <input
-      //         type="text"
-      //         value={this.state.value}
-      //         onChange={this.onChange}
-      //       />
+      <Fragment>
+        <button type="submit" onClick={props.onClick}>Join</button>
 
-      //       <button type="button" onClick={this.reset}>
-      //         Reset
-      //       </button>
-
-      //       <button>Submit</button>
-      //     </form>
-      <Link to="/">Return</Link>
-
-      // {list}
-      //   </div>
+        <Link to="/">Return</Link>
+      </Fragment>
     );
   }
 }
