@@ -21,7 +21,7 @@ class RoomsContainer extends Component {
 
       this.props.dispatch(parsed);
 
-      console.log(parsed);
+      // console.log(parsed);
     };
   };
 
@@ -32,7 +32,7 @@ class RoomsContainer extends Component {
 
   onSubmit = event => {
     event.preventDefault(); // so the page won't reload after submitting form
-    this.props.dispatch(createRoom(this.state.value));
+    this.props.dispatch(createRoom(this.state.value, this.props.jwt));
     // const { value } = this.state;
 
     // const postUrl = `${url}/room`;
@@ -66,7 +66,7 @@ class RoomsContainer extends Component {
 }
 
 function mapStateToProps(state) {
-  return { rooms: state.rooms };
+  return { rooms: state.rooms, jwt: state.user };
 }
 
 // const mapDispatchToProps = { addRoom, createRoom };

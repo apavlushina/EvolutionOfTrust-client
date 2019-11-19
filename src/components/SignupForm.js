@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { signup } from "../actions/signup";
+import { Button, Form, Row, Col } from "react-bootstrap/";
 
 class SignupForm extends React.Component {
   state = { email: "", password: "", name: "" };
@@ -20,27 +21,38 @@ class SignupForm extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.onSubmit}>
-          <input
-            onChange={this.onChange}
-            value={this.state.name}
-            name="name"
-            placeholder="name"
-          />
-          <input
-            onChange={this.onChange}
-            value={this.state.email}
-            name="email"
-            placeholder="email"
-          />
-          <input
-            onChange={this.onChange}
-            value={this.state.password}
-            name="password"
-            placeholder="password"
-          />
-          <button type="submit">Sign Up</button>
-        </form>
+        <Form onSubmit={this.onSubmit}>
+          <Form.Label>Sign up</Form.Label>
+          <Form.Row>
+            <Col>
+              <Form.Control
+                onChange={this.onChange}
+                value={this.state.name}
+                name="name"
+                placeholder="name"
+              />
+            </Col>
+            <Col>
+              <Form.Control
+                onChange={this.onChange}
+                value={this.state.email}
+                name="email"
+                placeholder="email"
+              />
+            </Col>
+            <Col>
+              <Form.Control
+                onChange={this.onChange}
+                value={this.state.password}
+                name="password"
+                placeholder="password"
+              />
+            </Col>
+            <Col>
+              <Button type="submit">Sign Up</Button>
+            </Col>
+          </Form.Row>
+        </Form>
       </div>
     );
   }

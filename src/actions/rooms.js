@@ -12,15 +12,15 @@ import { url } from "../constants";
 //   };
 // }
 
-export const ADD_ROOM = "ADD_ROOM";
+// export const ADD_ROOM = "ADD_ROOM";
 
-export function addRoom(payload) {
-  // console.log("add room action test", payload);
-  return {
-    type: ADD_ROOM,
-    payload
-  };
-}
+// export function addRoom(payload) {
+//   // console.log("add room action test", payload);
+//   return {
+//     type: ADD_ROOM,
+//     payload
+//   };
+// }
 
 // export const NEW_ROOM = "NEW_ROOM";
 
@@ -31,13 +31,11 @@ export function addRoom(payload) {
 //   };
 // }
 
-export const createRoom = name => dispatch => {
+export const createRoom = (name, jwt) => dispatch => {
   // console.log("create room test", name);
   request
     .post(`${url}/room`)
+    .set("Authorization", `Bearer ${jwt}`) // must set auth header to send jwt in every auth action
     .send({ name }) // the send ALWAYS takes an object, which will be the body of the request -> message="value"
-    .then(response => {
-      console.log(response);
-    })
     .catch(console.error);
 };

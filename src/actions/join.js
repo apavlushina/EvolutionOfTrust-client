@@ -26,6 +26,7 @@ export const join = (jwt, roomName) => dispatch => {
 
   request
     .put(`${baseUrl}/users/join`)
+    .set("Authorization", `Bearer ${jwt}`)
     .send({ jwt, roomName })
     .then(response => {
       //   console.log("response", response);
