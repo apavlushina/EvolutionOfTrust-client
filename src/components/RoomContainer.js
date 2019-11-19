@@ -10,7 +10,7 @@ export class RoomContainer extends Component {
   };
 
   render() {
-    return <Room onClick={this.onClick} />;
+    return <Room onClick={this.onClick} name={this.props.match.params.name} />;
   }
 }
 
