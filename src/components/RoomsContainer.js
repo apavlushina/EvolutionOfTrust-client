@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { url } from "../constants";
 import { connect } from "react-redux";
 import Rooms from "./Rooms";
-import { showRooms, addRoom, createRoom } from "../actions/rooms";
+import { createRoom } from "../actions/rooms";
 
 class RoomsContainer extends Component {
   state = {
@@ -17,18 +17,11 @@ class RoomsContainer extends Component {
     this.stream.onmessage = event => {
       // the onmessage property catches the stream data that is sent to the client (what was passed to stream.send in the backend)
       const { data } = event; // each event has an ID and data
-      const parsed = JSON.parse(data); // this turns serialized JS string (it was '['','']') back to JSON data (['',''] to be mapped)
+      const parsed = JSON.parse(data); // this is always an action object
 
-      if (Array.isArray(parsed)) {
-        // Array.isArray(arg) checks if the arg is an array
-        // we do this because the data can be an array (all old msgs) or a string (a single msg)
-        this.props.showRooms(parsed); // if it is an array we assume it contains all the messages
-      } else {
-        console.log(parsed);
-        this.props.addRoom(parsed); // remember? setState has to take an argument of the state OBJECT, and it sets the property whichever you puts into the state object as argument
-      }
+      this.props.dispatch(parsed);
 
-      // console.log("data test: ", data);
+      console.log(parsed);
     };
   };
 
@@ -39,7 +32,7 @@ class RoomsContainer extends Component {
 
   onSubmit = event => {
     event.preventDefault(); // so the page won't reload after submitting form
-    this.props.createRoom(this.state.value);
+    this.props.dispatch(createRoom(this.state.value));
     // const { value } = this.state;
 
     // const postUrl = `${url}/room`;
@@ -76,6 +69,6 @@ function mapStateToProps(state) {
   return { rooms: state.rooms };
 }
 
-const mapDispatchToProps = { showRooms, addRoom, createRoom };
+// const mapDispatchToProps = { addRoom, createRoom };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RoomsContainer);
+export default connect(mapStateToProps)(RoomsContainer);

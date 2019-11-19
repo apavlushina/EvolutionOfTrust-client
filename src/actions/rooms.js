@@ -1,15 +1,16 @@
 import request from "superagent";
 import { url } from "../constants";
 
-export const SHOW_ROOMS = "SHOW_ROOMS";
+// export const SHOW_ROOMS = "SHOW_ROOMS";
 
-export function showRooms(payload) {
-  // console.log("show room action test", payload);
-  return {
-    type: SHOW_ROOMS,
-    payload
-  };
-}
+// export function showRooms(payload) {
+//   // this action can be done in the backend in the stream endpoint
+//   // console.log("show room action test", payload);
+//   return {
+//     type: SHOW_ROOMS,
+//     payload
+//   };
+// }
 
 export const ADD_ROOM = "ADD_ROOM";
 
