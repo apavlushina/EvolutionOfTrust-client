@@ -49,7 +49,7 @@ class RoomsContainer extends Component {
     //   .send({ name: value }) // the send ALWAYS takes an object, which will be the body of the request -> message="value"
     //   .then(res => console.log("response test", res));
 
-    // this.setState({ value: "" }); //NOT WORKING! solved -> must include value attribute in input JSX element; see below
+    this.setState({ value: "" }); //NOT WORKING! solved -> must include value attribute in input JSX element; see below
     // this.state.value = "";
   };
 
@@ -65,6 +65,7 @@ class RoomsContainer extends Component {
           onSubmit={this.onSubmit}
           onChange={this.onChange}
           onClick={this.reset}
+          value={this.state.value}
         />
       </div>
     );

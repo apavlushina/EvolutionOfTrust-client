@@ -7,12 +7,26 @@ function doJoin(payload) {
     payload: payload
   };
 }
-export const join = jwt => dispatch => {
-  //   console.log("dispatch test");
+// export const join = (jwt, roomName) => dispatch => {
+//   //   console.log("dispatch test");
+
+//   request
+//     .put(`${baseUrl}/users/${jwt}`)
+//     .send({ roomName })
+//     .then(response => {
+//       console.log("response", response);
+//       const action = doJoin(response.body);
+//       dispatch(action);
+//     })
+//     .catch(console.error);
+// };
+
+export const join = (jwt, roomName) => dispatch => {
+  console.log("dispatch test");
 
   request
-    .put(`${baseUrl}/users`)
-    .send({ jwt })
+    .put(`${baseUrl}/users/join`)
+    .send({ jwt, roomName })
     .then(response => {
       console.log("response", response);
       const action = doJoin(response.body);

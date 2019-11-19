@@ -1,14 +1,9 @@
-import React, { Fragment, Component } from "react";
+import React, { Fragment } from "react";
 // import superagent from "superagent";
 // import { url } from "../constants";
 import { Link } from "react-router-dom";
 
 export default function Room(props) {
-  state = {
-    messages: [],
-    value: ""
-  };
-
   //   componentDidMount = () => {
   //     // const { name } = this.props.match.params;
 
@@ -68,18 +63,18 @@ export default function Room(props) {
   //     this.setState({ value: "" });
   //   };
 
-  render() {
-    // console.log("hello world", this.props);
-    // const list = this.state.messages.map((message, index) => (
-    //   <p key={index}>{message}</p>
-    // ));
+  // console.log("hello world", this.props);
+  // const list = this.state.messages.map((message, index) => (
+  //   <p key={index}>{message}</p>
+  // ));
 
-    return (
-      <Fragment>
-        <button type="submit" onClick={props.onClick}>Join</button>
+  return (
+    <Fragment>
+      <button type="submit" onClick={props.onClick}>
+        Join
+      </button>
 
-        <Link to="/">Return</Link>
-      </Fragment>
-    );
-  }
+      <Link to="/">Return</Link>
+    </Fragment>
+  );
 }
