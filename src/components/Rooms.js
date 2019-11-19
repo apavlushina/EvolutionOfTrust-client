@@ -1,26 +1,28 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import { Button, Form, Col } from "react-bootstrap";
+import { Button, Form, Col, ListGroup } from "react-bootstrap";
 
 export default function Rooms(props) {
   if (!props.rooms) {
     return null;
   }
   const list = props.rooms.map((room, index) => (
-    <p key={index}>
-      <Link to={`/room/${room.name}`}>{room.name}</Link>
-    </p>
+    <ListGroup key={index}>
+      <Link to={`/room/${room.name}`} className="a">
+        <ListGroup.Item action>{room.name}</ListGroup.Item>
+      </Link>
+    </ListGroup>
   ));
 
   return (
-    <div>
+    <Fragment>
       <Form>
         <Form.Label>Create room</Form.Label>
         <Form.Row>
           <Col>
             <Form.Control
               type="text"
-              placeholder="new room"
+              placeholder="room name"
               onChange={props.onChange}
               value={props.value} // !!! This sets the input display to be like the state; this makes it a fully controlled form
             />
@@ -37,6 +39,6 @@ export default function Rooms(props) {
       </Form>
 
       {list}
-    </div>
+    </Fragment>
   );
 }

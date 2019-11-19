@@ -21,7 +21,7 @@ class RoomsContainer extends Component {
 
       this.props.dispatch(parsed);
 
-      // console.log(parsed);
+      console.log(parsed);
     };
   };
 

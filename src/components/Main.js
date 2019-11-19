@@ -5,14 +5,17 @@ import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import RoomsContainer from "./RoomsContainer";
 import { connect } from "react-redux";
+import { Jumbotron } from "react-bootstrap";
 
 class Main extends Component {
   render() {
     if (!this.props.jwt) {
       return (
         <Fragment>
-          <SignupForm />
-          <LoginForm />
+          <Jumbotron>
+            <SignupForm />
+            <LoginForm />
+          </Jumbotron>
           <RoomsContainer />
         </Fragment>
       );

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { signup } from "../actions/signup";
-import { Button, Form, Row, Col } from "react-bootstrap/";
+import { Button, Form, Col } from "react-bootstrap/";
 
 class SignupForm extends React.Component {
   state = { email: "", password: "", name: "" };
