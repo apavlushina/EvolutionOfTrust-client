@@ -1,23 +1,26 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
-class Rooms extends Component {
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.props.onSubmit}>
-          <input
-            type="text"
-            onChange={this.props.onChange}
-            value={this.props.value} // !!! This sets the input display to be like the state; this makes it a fully controlled form
-          />
-          <button type="button" onClick={this.props.reset}>
-            Reset
-          </button>
-          <button>Submit</button>
-        </form>
-      </div>
-    );
-  }
+export default function Rooms(props) {
+  const list = props.rooms.map((room, index) => (
+    <p key={index}>
+      <Link to={`/room/${room.name}`}>{room.name}</Link>
+    </p>
+  ));
+  return (
+    <div>
+      <form onSubmit={props.onSubmit}>
+        <input
+          type="text"
+          onChange={props.onChange}
+          value={props.value} // !!! This sets the input display to be like the state; this makes it a fully controlled form
+        />
+        <button type="button" onClick={props.reset}>
+          Reset
+        </button>
+        <button>Submit</button>
+      </form>
+      {list}
+    </div>
+  );
 }
-
-export default Rooms;

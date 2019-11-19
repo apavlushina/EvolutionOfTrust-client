@@ -3,7 +3,7 @@
 import React, { Fragment, Component } from "react";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
-import Rooms from "./Rooms";
+import RoomsContainer from "./RoomsContainer";
 
 export default class Main extends Component {
   render() {
@@ -11,7 +11,7 @@ export default class Main extends Component {
       <Fragment>
         <SignupForm />
         <LoginForm />
-        <Rooms />
+        <RoomsContainer />
       </Fragment>
     );
   }
