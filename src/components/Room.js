@@ -9,26 +9,12 @@ export default function Room(props) {
       ? props.users.map((user, index) => <p key={index}>{user.name}</p>)
       : "This room has no users";
 
-  // const status =
-  //   props.user.length !== 2
-  //     ? <p>Waiting for players...</p>
-  //     : props.function(props.users) // we need function
-
   return (
     <Fragment>
       <h2>{props.name}</h2>
-      <Button type="submit" onClick={props.joinRoom}>
+      <Button type="submit" onClick={props.onClick}>
         Join
       </Button>
-      <div>
-        <Button type="submit" onClick={props.saveCoin}>
-          Cheat
-        </Button>
-        <Button type="submit" onClick={props.putCoin}>
-          Cooperate
-        </Button>
-      </div>
-
       {list}
       {status}
       <p>
