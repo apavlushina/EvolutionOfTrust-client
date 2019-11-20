@@ -57,7 +57,7 @@ class RoomsContainer extends Component {
           rooms={this.props.rooms}
           onSubmit={this.onSubmit}
           onChange={this.onChange}
-          onClick={this.reset}
+          reset={this.reset}
           value={this.state.value}
         />
       </div>
