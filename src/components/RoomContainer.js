@@ -46,14 +46,14 @@ export class RoomContainer extends Component {
         cooperate={this.cooperate}
         name={name}
         users={users}
-        decision={decision}
+        decisions={this.props.decisions}
       />
     );
   }
 }
 
 const mapStateToProps = state => {
-  return { jwt: state.user, rooms: state.rooms };
+  return { jwt: state.user, rooms: state.rooms, decisions: state.decision };
 };
 
 export default connect(mapStateToProps, { join, decision })(RoomContainer);
