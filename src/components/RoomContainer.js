@@ -21,7 +21,7 @@ export class RoomContainer extends Component {
 
   render() {
     const { name } = this.props.match.params;
-    const { rooms, decision } = this.props;
+    const { rooms } = this.props;
     console.log("rooms test:", rooms);
 
     const room = rooms.find(room => room.name === name); // this returns the room we are currently in
