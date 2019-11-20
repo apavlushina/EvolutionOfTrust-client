@@ -16,7 +16,7 @@ export default function Rooms(props) {
 
   return (
     <Fragment>
-      <Form>
+      <Form onSubmit={props.onSubmit}>
         <Form.Label>Create room</Form.Label>
         <Form.Row>
           <Col>
@@ -28,7 +28,7 @@ export default function Rooms(props) {
             />
           </Col>
           <Col>
-            <Button variant="primary" onClick={props.onSubmit}>
+            <Button variant="primary" type="submit">
               Submit
             </Button>
             <Button variant="secondary" onClick={props.reset}>

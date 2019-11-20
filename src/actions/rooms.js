@@ -31,7 +31,7 @@ import { url } from "../constants";
 //   };
 // }
 
-export const createRoom = (name, jwt) => dispatch => {
+export const createRoom = (name, jwt) => {
   // console.log("create room test", name);
   request
     .post(`${url}/room`)

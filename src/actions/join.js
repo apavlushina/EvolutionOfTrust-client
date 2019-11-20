@@ -22,10 +22,10 @@ function doJoin(payload) {
 // };
 
 export const join = (jwt, roomName) => dispatch => {
-  //   console.log("dispatch test");
+  console.log("join dispatch test");
 
   request
-    .put(`${baseUrl}/users/join`)
+    .put(`${baseUrl}/join`)
     .set("Authorization", `Bearer ${jwt}`) // must set auth header to send jwt in every auth action
     .send({ jwt, roomName })
     .then(response => {

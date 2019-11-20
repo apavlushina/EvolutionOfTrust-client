@@ -15,13 +15,13 @@ class RoomsContainer extends Component {
     // console.log("component did mount");
     // something that happens one time should be put here: showing messages
     this.stream.onmessage = event => {
+      // event.preventDefault();
+      console.log("only once");
       // the onmessage property catches the stream data that is sent to the client (what was passed to stream.send in the backend)
       const { data } = event; // each event has an ID and data
       const parsed = JSON.parse(data); // this is always an action object
-
-      this.props.dispatch(parsed);
-
       console.log(parsed);
+      this.props.dispatch(parsed);
     };
   };
 
@@ -32,7 +32,7 @@ class RoomsContainer extends Component {
 
   onSubmit = event => {
     event.preventDefault(); // so the page won't reload after submitting form
-    this.props.dispatch(createRoom(this.state.value, this.props.jwt));
+    createRoom(this.state.value, this.props.jwt);
     // const { value } = this.state;
 
     // const postUrl = `${url}/room`;

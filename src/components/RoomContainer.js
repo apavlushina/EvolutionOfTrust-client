@@ -15,9 +15,9 @@ export class RoomContainer extends Component {
     const { rooms } = this.props;
     console.log("rooms test:", rooms);
 
-    const room = rooms.find(room => (room.name = name)); // this returns the room we are currently in
+    const room = rooms.find(room => room.name === name); // this returns the room we are currently in
     // you must be logged in
-    console.log("room test", room);
+    console.log("room user test", room);
 
     if (!room) {
       return (

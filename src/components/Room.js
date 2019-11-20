@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
 export default function Room(props) {
+  console.log({ usersInRoom: props.users });
   const list =
     props.users && props.users.length
       ? props.users.map((user, index) => <p key={index}>{user.name}</p>)
