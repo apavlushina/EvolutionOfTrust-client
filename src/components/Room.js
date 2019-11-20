@@ -9,6 +9,11 @@ export default function Room(props) {
       ? props.users.map((user, index) => <p key={index}>{user.name}</p>)
       : "This room has no users";
 
+  // const status =
+  //   props.user.length !== 2
+  //     ? <p>Waiting for players...</p>
+  //     : props.function(props.users) // we need function
+
   return (
     <Fragment>
       <h2>{props.name}</h2>
@@ -16,6 +21,7 @@ export default function Room(props) {
         Join
       </Button>
       {list}
+      {status}
       <p>
         <Link to="/">Return</Link>
       </p>
