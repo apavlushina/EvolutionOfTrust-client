@@ -39,3 +39,12 @@ export const createRoom = (name, jwt) => {
     .send({ name }) // the send ALWAYS takes an object, which will be the body of the request -> message="value"
     .catch(console.error);
 };
+
+export const decision = (jwt, decision) => () => {
+  console.log("action test", decision);
+  request
+    .put(`${url}/status`)
+    .set("Authorization", `Bearer ${jwt}`)
+    .send({ jwt, decision })
+    .catch(console.error);
+};

@@ -3,11 +3,20 @@ import Room from "./Room";
 import { connect } from "react-redux";
 import { join } from "../actions/join";
 import { Link } from "react-router-dom";
+import { decision } from "../actions/rooms";
 
 export class RoomContainer extends Component {
-  joinRoom = event => {
+  joinRoom = () => {
     // console.log(this.props.jwt, this.props.match.params.name);
     this.props.join(this.props.jwt, this.props.match.params.name);
+  };
+
+  cheat = () => {
+    this.props.decision(this.props.jwt, "cheat");
+  };
+
+  cooperate = () => {
+    this.props.decision(this.props.jwt, "cooperate");
   };
 
   render() {
@@ -30,7 +39,15 @@ export class RoomContainer extends Component {
 
     const { users } = room;
 
-    return <Room joinRoom={this.joinRoom} name={name} users={users} />;
+    return (
+      <Room
+        joinRoom={this.joinRoom}
+        name={name}
+        users={users}
+        cheat={this.cheat}
+        cooperate={this.cooperate}
+      />
+    );
   }
 }
 
@@ -38,4 +55,4 @@ const mapStateToProps = state => {
   return { jwt: state.user, rooms: state.rooms };
 };
 
-export default connect(mapStateToProps, { join })(RoomContainer);
+export default connect(mapStateToProps, { join, decision })(RoomContainer);

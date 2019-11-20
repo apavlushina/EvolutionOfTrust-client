@@ -16,12 +16,8 @@ export default function Room(props) {
         Join
       </Button>
       <div>
-        <Button type="submit" onClick={props.saveCoin}>
-          Cheat
-        </Button>
-        <Button type="submit" onClick={props.putCoin}>
-          Cooperate
-        </Button>
+        <Button onClick={props.cheat}>Cheat</Button>
+        <Button onClick={props.cooperate}>Cooperate</Button>
       </div>
 
       {list}
