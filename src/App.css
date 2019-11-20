@@ -18,3 +18,11 @@ form-label {
   margin: 10px auto;
   margin-bottom: 30px;
 }
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
 export default function Room(props) {
-  console.log({ usersInRoom: props.users });
+  console.log("decision", props.decision);
   const list =
     props.users && props.users.length
       ? props.users.map((user, index) => <p key={index}>{user.name}</p>)
@@ -16,12 +16,24 @@ export default function Room(props) {
         Join
       </Button>
       <div>
-        <Button type="submit" onClick={props.saveCoin}>
-          Cheat
-        </Button>
-        <Button type="submit" onClick={props.putCoin}>
-          Cooperate
-        </Button>
+        <div className={props.decision === "" ? "hidden" : "visible"}>
+          <Button type="submit" onClick={props.cheat}>
+            Cheat
+          </Button>
+          <Button type="submit" onClick={props.cooperate}>
+            Cooperate
+          </Button>
+        </div>
+        <p className={props.decision ? "visible" : "hidden"}>Waiting...</p>
+        <div className={props.decision ? "hidden" : "visible"}>
+          <Button type="submit" onClick={props.cheat}>
+            Cheat
+          </Button>
+          <Button type="submit" onClick={props.cooperate}>
+            Cooperate
+          </Button>
+        </div>
+        <p className={props.decision ? "visible" : "hidden"}>Waiting...</p>
       </div>
 
       {list}
