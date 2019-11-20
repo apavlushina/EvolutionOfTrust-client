@@ -5,7 +5,7 @@ import { join } from "../actions/join";
 import { Link } from "react-router-dom";
 
 export class RoomContainer extends Component {
-  onClick = event => {
+  joinRoom = event => {
     // console.log(this.props.jwt, this.props.match.params.name);
     this.props.join(this.props.jwt, this.props.match.params.name);
   };
@@ -30,7 +30,7 @@ export class RoomContainer extends Component {
 
     const { users } = room;
 
-    return <Room onClick={this.onClick} name={name} users={users} />;
+    return <Room joinRoom={this.joinRoom} name={name} users={users} />;
   }
 }
 

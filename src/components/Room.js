@@ -12,9 +12,18 @@ export default function Room(props) {
   return (
     <Fragment>
       <h2>{props.name}</h2>
-      <Button type="submit" onClick={props.onClick}>
+      <Button type="submit" onClick={props.joinRoom}>
         Join
       </Button>
+      <div>
+        <Button type="submit" onClick={props.saveCoin}>
+          Cheat
+        </Button>
+        <Button type="submit" onClick={props.putCoin}>
+          Cooperate
+        </Button>
+      </div>
+
       {list}
       <p>
         <Link to="/">Return</Link>
