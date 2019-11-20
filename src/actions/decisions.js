@@ -2,7 +2,7 @@ import request from "superagent";
 const baseUrl = "http://localhost:4000";
 
 export const decision = (jwt, decision) => () => {
-  console.log("cheat dispatch test");
+  // console.log("cheat dispatch test");
 
   request
     .put(`${baseUrl}/status`)
