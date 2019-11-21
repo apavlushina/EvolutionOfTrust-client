@@ -11,7 +11,7 @@ export class RoomContainer extends Component {
   // const join = !joined && <join button JSX> // hides the button if joined
   // new button to link to user:
   // on the class level make a new async onClick function that takes an argument userName:
-  // in the button JSX: onClick={() => rhia.onClickFunction(userName)}
+  // in the button JSX: onClick={() => this.onClickFunction(userName)}
   // in the function, send request with jwt header to an endpoint to add point to user
   // in the backend, sends everything back to the client to update user points (easy way)
 

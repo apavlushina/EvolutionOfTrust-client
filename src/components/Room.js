@@ -20,7 +20,6 @@ export default function Room(props) {
   const user1 = props.joined &&
     !props.decisions.some(user => user.name === props.userName) && (
       <div>
-        <p>{props.userName}</p>
         <Button type="submit" onClick={props.cheat}>
           Cheat
         </Button>
@@ -36,7 +35,6 @@ export default function Room(props) {
   const user2 = props.users.some(user => user.name !== props.userName) &&
     !props.decisions.some(user => user.name !== props.userName) && (
       <div>
-        <p>{user2Name}</p>
         <Button type="submit" onClick={props.cheat}>
           Cheat
         </Button>
@@ -50,12 +48,46 @@ export default function Room(props) {
     <Fragment>
       <h2>{props.name}</h2>
       {join}
-      <div>
-        {user1}
-        <p className={props.decisions ? "visible" : "hidden"}>Waiting...</p>
-        {user2}
-        <p className={!props.decisions ? "visible" : "hidden"}>Waiting...</p>
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            <p className={props.joined ? "visible" : "hidden"}>
+              {props.userName}
+            </p>
+          </Col>
+          <Col></Col>
+          <Col>
+            <p>{user2Name}</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            {user1}
+            <p
+              className={
+                props.decisions.some(user => user.name === props.userName)
+                  ? "visible"
+                  : "hidden"
+              }
+            >
+              Waiting...
+            </p>
+          </Col>
+          <Col></Col>
+          <Col>
+            {user2}
+            <p
+              className={
+                props.decisions.some(user => user.name !== props.userName)
+                  ? "visible"
+                  : "hidden"
+              }
+            >
+              Waiting...
+            </p>
+          </Col>
+        </Row>
+      </Container>
 
       {/* {list} */}
       <p>
