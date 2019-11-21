@@ -23,7 +23,7 @@ export class RoomContainer extends Component {
     const { name } = this.props.match.params;
     const { rooms } = this.props;
     console.log("rooms test:", rooms);
-
+    console.log("decisionsleng", this.props.decisions);
     const room = rooms.find(room => room.name === name); // this returns the room we are currently in
     // you must be logged in
     console.log("room user test", room);
@@ -31,7 +31,7 @@ export class RoomContainer extends Component {
     if (!room) {
       return (
         <Fragment>
-          <p>This room does not exist</p>
+          <p>You can not enter the room without login!</p>
           <Link to="/">Return</Link>
         </Fragment>
       );
@@ -47,13 +47,14 @@ export class RoomContainer extends Component {
         name={name}
         users={users}
         decisions={this.props.decisions}
+        rounds={this.props.roundIsFinished}
       />
     );
   }
 }
 
 const mapStateToProps = state => {
-  return { jwt: state.user, rooms: state.rooms, decisions: state.decision };
+  return { jwt: state.user, rooms: state.rooms };
 };
 
 export default connect(mapStateToProps, { join, decision })(RoomContainer);
