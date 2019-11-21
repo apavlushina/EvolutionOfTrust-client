@@ -17,7 +17,9 @@ export const signup = (name, email, password) => dispatch => {
     .send({ name, email, password })
     .then(response => {
       //   console.log(response.text);
-      const action = doLogin(response.text);
+      const responseObject = JSON.parse(response.text);
+      const action = doLogin(responseObject); // object
+      console.log("RESPONSE TEXT TEST", typeof responseObject);
       dispatch(action);
     })
     .catch(console.error);

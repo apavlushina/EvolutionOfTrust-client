@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
+import { Button, Container, Col, Row } from "react-bootstrap";
 
 export default function Room(props) {
-  console.log("decision", props.decisions);
+  console.log("decision and rooms", props.decisions, props.rooms);
   const list =
     props.users && props.users.length
       ? props.users.map((user, index) => <p key={index}>{user.name}</p>)
