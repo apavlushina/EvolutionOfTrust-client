@@ -17,15 +17,15 @@ export class RoomContainer extends Component {
 
   joinRoom = () => {
     // console.log(this.props.jwt, this.props.match.params.name);
-    this.props.join(this.props.jwt, this.props.match.params.name);
+    this.props.join(this.props.user.jwt, this.props.match.params.name);
   };
 
   cheat = () => {
-    this.props.decision(this.props.jwt, "cheat");
+    this.props.decision(this.props.user.jwt, "cheat");
   };
 
   cooperate = () => {
-    this.props.decision(this.props.jwt, "cooperate");
+    this.props.decision(this.props.user.jwt, "cooperate");
   };
 
   render() {
@@ -65,7 +65,7 @@ export class RoomContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  return { jwt: state.user, rooms: state.rooms, decisions: state.decision };
+  return { user: state.user, rooms: state.rooms, decisions: state.decision };
 };
 
 export default connect(mapStateToProps, { join, decision })(RoomContainer);
