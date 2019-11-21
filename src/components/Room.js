@@ -9,12 +9,16 @@ export default function Room(props) {
       ? props.users.map((user, index) => <p key={index}>{user.name}</p>)
       : "This room has no users";
 
+  const join = !props.joined && (
+    <Button type="submit" onClick={props.joinRoom}>
+      Join
+    </Button>
+  );
+
   return (
     <Fragment>
       <h2>{props.name}</h2>
-      <Button type="submit" onClick={props.joinRoom}>
-        Join
-      </Button>
+      {join}
       <div>
         <div className={props.decisions.length ? "hidden" : "visible"}>
           <Button type="submit" onClick={props.cheat}>

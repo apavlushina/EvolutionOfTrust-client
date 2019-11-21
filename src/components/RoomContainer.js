@@ -48,7 +48,10 @@ export class RoomContainer extends Component {
     const { users } = room;
 
     // join room button
-    const joined = room.users.some(user => user.name === this.props.user.name);
+
+    const joined =
+      users && users.some(user => user.name === this.props.user.name);
+
     // how can i know this username is from this user that clicked
     return (
       <Room
@@ -59,6 +62,7 @@ export class RoomContainer extends Component {
         users={users}
         decisions={this.props.decisions}
         rooms={this.props.rooms}
+        joined={joined}
       />
     );
   }
