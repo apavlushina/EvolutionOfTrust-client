@@ -46,6 +46,17 @@ export class RoomContainer extends Component {
       );
     }
     const { users } = room;
+    console.log("users test", users);
+
+    const user1 =
+      users && users.find(user => user.name === this.props.user.name);
+    const user1Decision = user1 && user1.decision;
+    const user1Coins = user1 && user1.coins;
+
+    const user2 =
+      users && users.find(user => user.name !== this.props.user.name);
+    const user2Decision = user2 && user2.decision;
+    const user2Coins = user2 && user2.coins;
 
     // join room button
 
@@ -60,17 +71,21 @@ export class RoomContainer extends Component {
         cooperate={this.cooperate}
         name={name}
         users={users}
-        decisions={this.props.decisions}
         rooms={this.props.rooms}
         joined={joined}
-        userName={this.props.user.name}
+        userOne={user1}
+        userOneDecision={user1Decision}
+        userOneCoins={user1Coins}
+        userTwo={user2}
+        userTwoDecision={user2Decision}
+        userTwoCoins={user2Coins}
       />
     );
   }
 }
 
 const mapStateToProps = state => {
-  return { user: state.user, rooms: state.rooms};
+  return { user: state.user, rooms: state.rooms };
 };
 
 export default connect(mapStateToProps, { join, decision })(RoomContainer);
