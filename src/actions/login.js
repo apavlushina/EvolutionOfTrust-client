@@ -4,7 +4,7 @@ const baseUrl = "http://localhost:4000";
 function doLogin(payload) {
   return {
     type: LOGIN,
-    payload: payload.jwt
+    payload: payload
   };
 }
 export const login = (email, password) => dispatch => {
@@ -13,9 +13,12 @@ export const login = (email, password) => dispatch => {
   request
     .post(`${baseUrl}/login`)
     .send({ email, password })
+
     .then(response => {
-      // console.log("response", response);
-      const action = doLogin(response.body);
+      console.log(response.text);
+      const responseObject = JSON.parse(response.text);
+      const action = doLogin(responseObject); // object
+      // console.log("RESPONSE TEXT TEST", typeof responseObject);
       dispatch(action);
     })
     .catch(console.error);
