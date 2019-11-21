@@ -52,12 +52,12 @@ export default function Room(props) {
         <Row>
           <Col>
             <p className={props.joined ? "visible" : "hidden"}>
-              {props.userName}
+              {props.userName} has {props.user1Coins} coins
             </p>
           </Col>
           <Col></Col>
           <Col>
-            <p>{user2Name}</p>
+            <p>{user2Name} has {props.user2Coins} coins </p>
           </Col>
         </Row>
         <Row>
@@ -88,8 +88,6 @@ export default function Room(props) {
           </Col>
         </Row>
       </Container>
-
-      {/* {list} */}
       <p>
         <Link to="/">Return</Link>
       </p>
