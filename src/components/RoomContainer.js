@@ -70,8 +70,6 @@ export class RoomContainer extends Component {
         cheat={this.cheat}
         cooperate={this.cooperate}
         name={name}
-        users={users}
-        rooms={this.props.rooms}
         joined={joined}
         userOne={user1}
         userOneDecision={user1Decision}
