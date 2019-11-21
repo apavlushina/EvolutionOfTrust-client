@@ -22,7 +22,7 @@ function doJoin(payload) {
 // };
 
 export const join = (jwt, roomName) => dispatch => {
-  console.log("join dispatch test");
+  // console.log("join dispatch test");
 
   request
     .put(`${baseUrl}/join`)
@@ -31,6 +31,7 @@ export const join = (jwt, roomName) => dispatch => {
     .then(response => {
       //   console.log("response", response);
       const action = doJoin(response.body);
+      console.log("RESPONSE BODY?", response.body);
       dispatch(action);
     })
     .catch(console.error);

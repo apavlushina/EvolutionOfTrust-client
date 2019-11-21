@@ -9,7 +9,7 @@ import { Jumbotron } from "react-bootstrap";
 
 class Main extends Component {
   render() {
-    if (!this.props.jwt) {
+    if (!this.props.user.jwt) {
       return (
         <Fragment>
           <Jumbotron>
@@ -30,7 +30,7 @@ class Main extends Component {
 }
 
 const mapStateToProps = state => {
-  return { jwt: state.user };
+  return { user: state.user };
 };
 
 export default connect(mapStateToProps)(Main);
