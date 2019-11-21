@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { url } from "../constants";
 import { connect } from "react-redux";
 import Rooms from "./Rooms";
 import { createRoom } from "../actions/rooms";
@@ -7,22 +6,6 @@ import { createRoom } from "../actions/rooms";
 class RoomsContainer extends Component {
   state = {
     value: ""
-  };
-
-  stream = new EventSource(`${url}/stream`); // EventSource is built in in JS; argument is where we connect to the stream
-
-  componentDidMount = () => {
-    // console.log("component did mount");
-    // something that happens one time should be put here: showing messages
-    this.stream.onmessage = event => {
-      // event.preventDefault();
-      console.log("only once");
-      // the onmessage property catches the stream data that is sent to the client (what was passed to stream.send in the backend)
-      const { data } = event; // each event has an ID and data
-      const parsed = JSON.parse(data); // this is always an action object
-      console.log(parsed);
-      this.props.dispatch(parsed);
-    };
   };
 
   onChange = event => {
