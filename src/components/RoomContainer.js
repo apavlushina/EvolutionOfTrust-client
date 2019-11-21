@@ -63,6 +63,7 @@ export class RoomContainer extends Component {
         decisions={this.props.decisions}
         rooms={this.props.rooms}
         joined={joined}
+        userName={this.props.user.name}
       />
     );
   }
