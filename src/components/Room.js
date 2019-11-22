@@ -11,6 +11,10 @@ export default function Room(props) {
   //       ))
   //     : "This room has no users";
 
+  if (!props.users) {
+    return <p>This room has no users</p>;
+  }
+
   const join = !props.joined && (
     <Button type="submit" onClick={props.joinRoom}>
       Join
@@ -33,7 +37,7 @@ export default function Room(props) {
     props.users.find(user => user.name !== props.userName) &&
     props.users.find(user => user.name !== props.userName).name;
   const user2 = props.users.some(user => user.name !== props.userName) &&
-    !props.decisions.some(user => user.name !== props.userName) && (
+    !props.rooms.users.decision.some(user => user.name !== props.userName) && (
       <div>
         <Button type="submit" onClick={props.cheat}>
           Cheat
@@ -44,10 +48,8 @@ export default function Room(props) {
       </div>
     );
 
-  return (
-    <Fragment>
-      <h2>{props.name}</h2>
-      {join}
+  const empty =
+    props.users && props.users.length ? (
       <Container>
         <Row>
           <Col>
@@ -57,7 +59,9 @@ export default function Room(props) {
           </Col>
           <Col></Col>
           <Col>
-            <p>{user2Name} has {props.user2Coins} coins </p>
+            <p>
+              {user2Name} has {props.user2Coins} coins{" "}
+            </p>
           </Col>
         </Row>
         <Row>
@@ -65,7 +69,9 @@ export default function Room(props) {
             {user1}
             <p
               className={
-                props.decisions.some(user => user.name === props.userName)
+                props.rooms.users.decision.some(
+                  user => user.name === props.userName
+                )
                   ? "visible"
                   : "hidden"
               }
@@ -78,7 +84,9 @@ export default function Room(props) {
             {user2}
             <p
               className={
-                props.decisions.some(user => user.name !== props.userName)
+                props.rooms.users.decision.some(
+                  user => user.name !== props.userName
+                )
                   ? "visible"
                   : "hidden"
               }
@@ -88,6 +96,15 @@ export default function Room(props) {
           </Col>
         </Row>
       </Container>
+    ) : (
+      "This room has no users"
+    );
+
+  return (
+    <Fragment>
+      <h2>{props.name}</h2>
+      {join}
+      {empty}
       <p>
         <Link to="/">Return</Link>
       </p>
