@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button, Container, Col, Row } from "react-bootstrap";
 
 export default function Room(props) {
-  console.log("decision and rooms", props.decisions, props.rooms);
+  // console.log("decision and rooms", props.decisions, props.rooms);
   // const list =
   //   props.users && props.users.length
   //     ? props.users.map((user, index) => (
@@ -17,72 +17,60 @@ export default function Room(props) {
     </Button>
   );
 
-  const user1 = props.joined &&
-    !props.decisions.some(user => user.name === props.userName) && (
-      <div>
-        <Button type="submit" onClick={props.cheat}>
-          Cheat
-        </Button>
-        <Button type="submit" onClick={props.cooperate}>
-          Cooperate
-        </Button>
-      </div>
-    );
+  const user1 = props.joined && !props.userOneDecision && (
+    <div>
+      <Button type="submit" onClick={props.cheat}>
+        Cheat
+      </Button>
+      <Button type="submit" onClick={props.cooperate}>
+        Cooperate
+      </Button>
+    </div>
+  );
+  const userOneName = props.userOne && props.userOne.name;
 
-  const user2Name =
-    props.users.find(user => user.name !== props.userName) &&
-    props.users.find(user => user.name !== props.userName).name;
-  const user2 = props.users.some(user => user.name !== props.userName) &&
-    !props.decisions.some(user => user.name !== props.userName) && (
-      <div>
-        <Button type="submit" onClick={props.cheat}>
-          Cheat
-        </Button>
-        <Button type="submit" onClick={props.cooperate}>
-          Cooperate
-        </Button>
-      </div>
-    );
+  const user2 = props.userTwo && !props.userTwoDecision && (
+    <div>
+      <Button type="submit" onClick={props.cheat}>
+        Cheat
+      </Button>
+      <Button type="submit" onClick={props.cooperate}>
+        Cooperate
+      </Button>
+    </div>
+  );
+  const userTwoName = props.userTwo && props.userTwo.name;
 
   return (
     <Fragment>
       <h2>{props.name}</h2>
       {join}
+
       <Container>
         <Row>
           <Col>
             <p className={props.joined ? "visible" : "hidden"}>
-              {props.userName} has {props.user1Coins} coins
+              {userOneName} has {props.userOneCoins} coins
             </p>
           </Col>
           <Col></Col>
           <Col>
-            <p>{user2Name} has {props.user2Coins} coins </p>
+            <p className={props.userTwo ? "visible" : "hidden"}>
+              {userTwoName} has {props.userTwoCoins} coins
+            </p>
           </Col>
         </Row>
         <Row>
           <Col>
             {user1}
-            <p
-              className={
-                props.decisions.some(user => user.name === props.userName)
-                  ? "visible"
-                  : "hidden"
-              }
-            >
+            <p className={props.userOneDecision ? "visible" : "hidden"}>
               Waiting...
             </p>
           </Col>
           <Col></Col>
           <Col>
             {user2}
-            <p
-              className={
-                props.decisions.some(user => user.name !== props.userName)
-                  ? "visible"
-                  : "hidden"
-              }
-            >
+            <p className={props.userTwoDecision ? "visible" : "hidden"}>
               Waiting...
             </p>
           </Col>

@@ -46,31 +46,54 @@ export class RoomContainer extends Component {
       );
     }
     const { users } = room;
+    console.log("users test", users);
+
+    //user 1
+    const user1 =
+      users && users.find(user => user.name === this.props.user.name);
+    const user1Decision = user1 && user1.decision;
+    const user1Coins = user1 && user1.coins;
+
+    //user 2
+    const user2 =
+      users && users.find(user => user.name !== this.props.user.name);
+    const user2Decision = user2 && user2.decision;
+    const user2Coins = user2 && user2.coins;
 
     // join room button
-
     const joined =
       users && users.some(user => user.name === this.props.user.name);
 
-    // how can i know this username is from this user that clicked
+    // endgame
+    // console.log("room turn test", room.turn);
+    let endgame = false;
+    if (room.turn > 5) {
+      endgame = true; // this will be passed to Room.js as props
+      // in Room.js create bootstrap modal to display game result
+      // in the modal display a button that resets user and room data in the backend
+    }
+
     return (
       <Room
         joinRoom={this.joinRoom}
         cheat={this.cheat}
         cooperate={this.cooperate}
         name={name}
-        users={users}
-        decisions={this.props.decisions}
-        rooms={this.props.rooms}
         joined={joined}
-        userName={this.props.user.name}
+        userOne={user1}
+        userOneDecision={user1Decision}
+        userOneCoins={user1Coins}
+        userTwo={user2}
+        userTwoDecision={user2Decision}
+        userTwoCoins={user2Coins}
+        endgame={endgame}
       />
     );
   }
 }
 
 const mapStateToProps = state => {
-  return { user: state.user, rooms: state.rooms};
+  return { user: state.user, rooms: state.rooms };
 };
 
 export default connect(mapStateToProps, { join, decision })(RoomContainer);

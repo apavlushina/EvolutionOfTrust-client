@@ -19,7 +19,7 @@ export const signup = (name, email, password) => dispatch => {
       //   console.log(response.text);
       const responseObject = JSON.parse(response.text);
       const action = doLogin(responseObject); // object
-      console.log("RESPONSE TEXT TEST", typeof responseObject);
+      // console.log("RESPONSE TEXT TEST", typeof responseObject);
       dispatch(action);
     })
     .catch(console.error);
