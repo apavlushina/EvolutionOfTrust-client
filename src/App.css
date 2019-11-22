@@ -1,6 +1,13 @@
 body {
   margin: 15px;
-  background-color: #f0f8ff;
+  background-color: #f8f8f8;
+  font-family: "Indie Flower", cursive;
+  font-size: 18px;
+}
+
+h2 {
+  padding: 20px;
+  text-align: center;
 }
 
 .list-group .a,
@@ -14,6 +21,26 @@ body {
   width: 700px;
 }
 
+.form-row {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.lineheight {
+  line-height: 75px;
+}
+
+.create-form {
+  display: flex;
+  justify-content: space-between;
+  width: 700px;
+  margin: 0 auto;
+}
+
+.newcontrol {
+  width: 300px;
+}
+
 form-label {
   margin: 10px auto;
   margin-bottom: 30px;
@@ -25,4 +52,48 @@ form-label {
 
 .visible {
   display: block;
+}
+
+.carousel {
+  background-color: #5358e0;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  border-radius: 5% 5%;
+}
+
+.carousel-item {
+  height: 450px;
+  padding: 10px 150px;
+}
+
+.carousel-caption {
+  height: 90%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.rules-img {
+  width: 40%;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+.player {
+  width: 150px;
+}
+
+.main {
+  background-image: url("../src/components/back2.jpg");
+  background-size: 100%;
+  background-repeat: repeat-y;
+}
+
+.col {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.bag {
+  width: 300px;
+  margin-top: 50px;
 }

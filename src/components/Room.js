@@ -1,6 +1,9 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Col, Row } from "react-bootstrap";
+import player1 from "./player1.jpg";
+import player2 from "./player2.jpg";
+import bag from "./bag2.png";
 
 export default function Room(props) {
   // console.log("decision and rooms", props.decisions, props.rooms);
@@ -43,18 +46,19 @@ export default function Room(props) {
 
   return (
     <Fragment>
-      <h2>{props.name}</h2>
-      {join}
-
       <Container>
         <Row>
           <Col>
+            <img alt="player1" src={player1} className="player"></img>
             <p className={props.joined ? "visible" : "hidden"}>
               {userOneName} has {props.userOneCoins} coins
             </p>
           </Col>
-          <Col></Col>
           <Col>
+            <img alt="bag with coins" src={bag} className="bag"></img>
+          </Col>
+          <Col>
+            <img alt="player2" src={player2} className="player"></img>
             <p className={props.userTwo ? "visible" : "hidden"}>
               {userTwoName} has {props.userTwoCoins} coins
             </p>
@@ -76,9 +80,13 @@ export default function Room(props) {
           </Col>
         </Row>
       </Container>
-      <p>
-        <Link to="/">Return</Link>
-      </p>
+      <div>
+        <p>{join}</p>
+        <p>
+          {" "}
+          <Link to="/">Back to the main page</Link>
+        </p>
+      </div>
     </Fragment>
   );
 }

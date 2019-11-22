@@ -1,5 +1,6 @@
 import React, { Fragment, Component } from "react";
 import Room from "./Room";
+import Rules from "./Rules";
 import { connect } from "react-redux";
 import { decision } from "../actions/decisions";
 import { join } from "../actions/join";
@@ -74,20 +75,23 @@ export class RoomContainer extends Component {
     }
 
     return (
-      <Room
-        joinRoom={this.joinRoom}
-        cheat={this.cheat}
-        cooperate={this.cooperate}
-        name={name}
-        joined={joined}
-        userOne={user1}
-        userOneDecision={user1Decision}
-        userOneCoins={user1Coins}
-        userTwo={user2}
-        userTwoDecision={user2Decision}
-        userTwoCoins={user2Coins}
-        endgame={endgame}
-      />
+      <div>
+        <Rules name={name} />
+        <Room
+          joinRoom={this.joinRoom}
+          cheat={this.cheat}
+          cooperate={this.cooperate}
+          name={name}
+          joined={joined}
+          userOne={user1}
+          userOneDecision={user1Decision}
+          userOneCoins={user1Coins}
+          userTwo={user2}
+          userTwoDecision={user2Decision}
+          userTwoCoins={user2Coins}
+          endgame={endgame}
+        />
+      </div>
     );
   }
 }

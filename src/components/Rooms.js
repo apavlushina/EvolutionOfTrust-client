@@ -16,11 +16,12 @@ export default function Rooms(props) {
 
   return (
     <Fragment>
-      <Form onSubmit={props.onSubmit}>
-        <Form.Label>Create room</Form.Label>
+      <Form onSubmit={props.onSubmit} className="create-form">
+        <Form.Label className="lineheight">Create room</Form.Label>
         <Form.Row>
           <Col>
             <Form.Control
+              className="newcontrol"
               type="text"
               placeholder="room name"
               onChange={props.onChange}
