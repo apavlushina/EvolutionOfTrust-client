@@ -63,9 +63,9 @@ export default function Room(props) {
   );
 
   //  endgame
-  // const endgame = props.endgame && (
-  //   <EndgameContainer winner={props.winner} loser={props.loser} />
-  // );
+  const endgame = props.endgame && (
+    <EndgameContainer winner={props.winner} loser={props.loser} />
+  );
 
   return (
     <Fragment>
@@ -95,7 +95,7 @@ export default function Room(props) {
       <p>
         <Link to="/">Return</Link>
       </p>
-      {/* {endgame} */}
+      {endgame}
     </Fragment>
   );
 }

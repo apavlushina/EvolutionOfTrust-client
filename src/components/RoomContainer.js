@@ -64,21 +64,28 @@ export class RoomContainer extends Component {
     // console.log("room turn test", room.turn);
     /////////////////////////////////////////////////
     const getWinner = players => {
-      const userCoinsArray = users.map(user => user.coins);
+      const userCoinsArray = players.map(user => user.coins);
       const largerCoinsAmount = userCoinsArray.reduce((pre, cur) =>
         cur > pre ? cur : pre
       );
       return players.find(player => player.coins === largerCoinsAmount);
     };
+    const getLoser = players => {
+      const userCoinsArray = players.map(user => user.coins);
+      const lesserCoinsAmount = userCoinsArray.reduce((pre, cur) =>
+        cur < pre ? cur : pre
+      );
+      return players.find(player => player.coins === lesserCoinsAmount);
+    };
     const players = room.users;
     function end() {
-      if (room.turn === 6) {
+      if (room.turn === 4) {
         return {
           endgame: true, // this will be passed to Room.js as props
           // in Room.js create bootstrap modal to display game result
           // in the modal display a button that resets user and room data in the backend
           winner: getWinner(players),
-          loser: players.find(player => player.name !== winner.name)
+          loser: getLoser(players)
         };
       }
 
@@ -91,12 +98,6 @@ export class RoomContainer extends Component {
     //   player1Coins > player2Coins ? player1 : player2;
     // const getLoser = (player1, player2, player1Coins, player2Coins) =>
     //   player1Coins > player2Coins ? player2 : player1;
-
-    console.log("room users test", users);
-    console.log("room turn test", room.turn);
-    console.log("endgame?", endgame);
-    console.log("winner test", winner);
-    console.log("loser test", loser);
 
     return (
       <Room

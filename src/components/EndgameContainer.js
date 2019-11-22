@@ -9,7 +9,7 @@ function EndgameContainer(props) {
   //somewhere insert method: setModalShow(true)
 
   const exitGame = () => {
-    endgame(this.props.user.jwt);
+    endgame(props.user.jwt);
   };
 
   return (
@@ -20,7 +20,7 @@ function EndgameContainer(props) {
 
       <Endgame
         show={modalShow}
-        onHide={() => setModalShow(false)}
+        onHide={() => exitGame()}
         winner={props.winner}
         loser={props.loser}
       />
