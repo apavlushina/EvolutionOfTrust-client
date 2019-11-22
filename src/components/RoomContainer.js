@@ -32,11 +32,11 @@ export class RoomContainer extends Component {
   render() {
     const { name } = this.props.match.params;
     const { rooms } = this.props;
-    console.log("rooms test:", rooms);
-    console.log("decisionsleng", this.props.decisions);
+    // console.log("rooms test:", rooms);
+    // console.log("decisionsleng", this.props.decisions);
     const room = rooms.find(room => room.name === name); // this returns the room we are currently in
     // you must be logged in
-    console.log("room user test", room);
+    // console.log("room user test", room);
 
     if (!room) {
       return (
@@ -47,19 +47,15 @@ export class RoomContainer extends Component {
       );
     }
     const { users } = room;
-    console.log("users test", users);
+    // console.log("users test", users);
 
     //user 1
     const user1 =
       users && users.find(user => user.name === this.props.user.name);
-    const user1Decision = user1 && user1.decision;
-    const user1Coins = user1 && user1.coins;
 
     //user 2
     const user2 =
       users && users.find(user => user.name !== this.props.user.name);
-    const user2Decision = user2 && user2.decision;
-    const user2Coins = user2 && user2.coins;
 
     // join room button
     const joined =
@@ -67,30 +63,58 @@ export class RoomContainer extends Component {
 
     // endgame
     // console.log("room turn test", room.turn);
-    let endgame = false;
-    if (room.turn > 5) {
-      endgame = true; // this will be passed to Room.js as props
-      // in Room.js create bootstrap modal to display game result
-      // in the modal display a button that resets user and room data in the backend
+    /////////////////////////////////////////////////
+    const getWinner = players => {
+      const userCoinsArray = players.map(user => user.coins);
+      const largerCoinsAmount = userCoinsArray.reduce((pre, cur) =>
+        cur > pre ? cur : pre
+      );
+      return players.find(player => player.coins === largerCoinsAmount);
+    };
+    const getLoser = players => {
+      const userCoinsArray = players.map(user => user.coins);
+      const lesserCoinsAmount = userCoinsArray.reduce((pre, cur) =>
+        cur < pre ? cur : pre
+      );
+      return players.find(player => player.coins === lesserCoinsAmount);
+    };
+    const players = room.users;
+    function end() {
+      if (room.turn === 4) {
+        return {
+          endgame: true, // this will be passed to Room.js as props
+          // in Room.js create bootstrap modal to display game result
+          // in the modal display a button that resets user and room data in the backend
+          winner: getWinner(players),
+          loser: getLoser(players)
+        };
+      }
+
+      return {};
     }
 
+    const { endgame, winner, loser } = end();
+    ////////////////////////////////////////////////////
+    // const getWinner = (player1, player2, player1Coins, player2Coins) =>
+    //   player1Coins > player2Coins ? player1 : player2;
+    // const getLoser = (player1, player2, player1Coins, player2Coins) =>
+    //   player1Coins > player2Coins ? player2 : player1;
+
     return (
-      <div>
-        <Rules name={name} />
-        <Room
-          joinRoom={this.joinRoom}
-          cheat={this.cheat}
-          cooperate={this.cooperate}
-          name={name}
-          joined={joined}
-          userOne={user1}
-          userOneDecision={user1Decision}
-          userOneCoins={user1Coins}
-          userTwo={user2}
-          userTwoDecision={user2Decision}
-          userTwoCoins={user2Coins}
-          endgame={endgame}
-        />
+     <div>
+      <Rules name={name} />
+      <Room
+        joinRoom={this.joinRoom}
+        cheat={this.cheat}
+        cooperate={this.cooperate}
+        name={name}
+        joined={joined}
+        userOne={user1}
+        userTwo={user2}
+        endgame={endgame}
+        winner={winner}
+        loser={loser}
+      />
       </div>
     );
   }

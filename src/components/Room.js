@@ -5,7 +5,56 @@ import player1 from "./player1.jpg";
 import player2 from "./player2.jpg";
 import bag from "./bag2.png";
 
+import EndgameContainer from "./EndgameContainer";
+
+function Coins(props) {
+  console.log("Coins props test:", props);
+  if (props.user) {
+    return (
+      <Col>
+        <p>
+          {props.user.name} has {props.user.coins} coins
+        </p>
+      </Col>
+    );
+  }
+
+  return <Col />;
+}
+
+function Decisions(props) {
+  if (!props.user || !props.cheat || !props.cooperate) {
+    console.warn("Decisions needs more data!");
+
+    return <Col />;
+  }
+
+  const buttons = !props.user.decision && (
+    <div>
+      <Button type="submit" onClick={props.cheat}>
+        Cheat
+      </Button>
+      <Button type="submit" onClick={props.cooperate}>
+        Cooperate
+      </Button>
+    </div>
+  );
+
+  const waiting = props.user.decision && <p>Waiting...</p>;
+
+  return (
+    <Col>
+      {buttons}
+      {waiting}
+    </Col>
+  );
+}
+
+
+
+
 export default function Room(props) {
+  console.log("Room props test:", props);
   // console.log("decision and rooms", props.decisions, props.rooms);
   // const list =
   //   props.users && props.users.length
@@ -20,64 +69,33 @@ export default function Room(props) {
     </Button>
   );
 
-  const user1 = props.joined && !props.userOneDecision && (
-    <div>
-      <Button type="submit" onClick={props.cheat}>
-        Cheat
-      </Button>
-      <Button type="submit" onClick={props.cooperate}>
-        Cooperate
-      </Button>
-    </div>
+  //  endgame
+  const endgame = props.endgame && (
+    <EndgameContainer winner={props.winner} loser={props.loser} />
   );
-  const userOneName = props.userOne && props.userOne.name;
-
-  const user2 = props.userTwo && !props.userTwoDecision && (
-    <div>
-      <Button type="submit" onClick={props.cheat}>
-        Cheat
-      </Button>
-      <Button type="submit" onClick={props.cooperate}>
-        Cooperate
-      </Button>
-    </div>
-  );
-  const userTwoName = props.userTwo && props.userTwo.name;
 
   return (
     <Fragment>
       <Container>
         <Row>
-          <Col>
-            <img alt="player1" src={player1} className="player"></img>
-            <p className={props.joined ? "visible" : "hidden"}>
-              {userOneName} has {props.userOneCoins} coins
-            </p>
-          </Col>
+          <Coins user={props.userOne} />
           <Col>
             <img alt="bag with coins" src={bag} className="bag"></img>
           </Col>
-          <Col>
-            <img alt="player2" src={player2} className="player"></img>
-            <p className={props.userTwo ? "visible" : "hidden"}>
-              {userTwoName} has {props.userTwoCoins} coins
-            </p>
-          </Col>
+          <Coins user={props.userTwo} />
         </Row>
         <Row>
-          <Col>
-            {user1}
-            <p className={props.userOneDecision ? "visible" : "hidden"}>
-              Waiting...
-            </p>
-          </Col>
+          <Decisions
+            user={props.userOne}
+            cheat={props.cheat}
+            cooperate={props.cooperate}
+          />
           <Col></Col>
-          <Col>
-            {user2}
-            <p className={props.userTwoDecision ? "visible" : "hidden"}>
-              Waiting...
-            </p>
-          </Col>
+          <Decisions
+            user={props.userTwo}
+            cheat={props.cheat}
+            cooperate={props.cooperate}
+          />
         </Row>
       </Container>
       <div>

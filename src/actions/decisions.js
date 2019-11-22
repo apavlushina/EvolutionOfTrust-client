@@ -10,3 +10,10 @@ export const decision = (jwt, decision) => () => {
     .send({ jwt, decision })
     .catch(console.error);
 };
+
+export const endgame = jwt => {
+  request
+    .put(`${baseUrl}/endgame`)
+    .set("Authorization", `Bearer ${jwt}`) // must set auth header to send jwt in every auth action
+    .catch(console.error);
+};
