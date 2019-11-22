@@ -35,7 +35,13 @@ class RoomsContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="main">
+        <h2>
+          Do you want to check can you trust people or can they trust you?{" "}
+          <br />
+          So log in, join the room (or create a new one), wait for another
+          player - and we will check!
+        </h2>
         <Rooms
           rooms={this.props.rooms}
           onSubmit={this.onSubmit}

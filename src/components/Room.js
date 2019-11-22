@@ -1,6 +1,10 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Col, Row } from "react-bootstrap";
+import player1 from "./player1.jpg";
+import player2 from "./player2.jpg";
+import bag from "./bag2.png";
+
 import EndgameContainer from "./EndgameContainer";
 
 function Coins(props) {
@@ -46,6 +50,9 @@ function Decisions(props) {
   );
 }
 
+
+
+
 export default function Room(props) {
   console.log("Room props test:", props);
   // console.log("decision and rooms", props.decisions, props.rooms);
@@ -69,13 +76,12 @@ export default function Room(props) {
 
   return (
     <Fragment>
-      <h2>{props.name}</h2>
-      {join}
-
       <Container>
         <Row>
           <Coins user={props.userOne} />
-          <Col></Col>
+          <Col>
+            <img alt="bag with coins" src={bag} className="bag"></img>
+          </Col>
           <Coins user={props.userTwo} />
         </Row>
         <Row>
@@ -92,10 +98,13 @@ export default function Room(props) {
           />
         </Row>
       </Container>
-      <p>
-        <Link to="/">Return</Link>
-      </p>
-      {endgame}
+      <div>
+        <p>{join}</p>
+        <p>
+          {" "}
+          <Link to="/">Back to the main page</Link>
+        </p>
+      </div>
     </Fragment>
   );
 }

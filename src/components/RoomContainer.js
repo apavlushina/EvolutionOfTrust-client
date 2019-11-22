@@ -1,5 +1,6 @@
 import React, { Fragment, Component } from "react";
 import Room from "./Room";
+import Rules from "./Rules";
 import { connect } from "react-redux";
 import { decision } from "../actions/decisions";
 import { join } from "../actions/join";
@@ -100,6 +101,8 @@ export class RoomContainer extends Component {
     //   player1Coins > player2Coins ? player2 : player1;
 
     return (
+     <div>
+      <Rules name={name} />
       <Room
         joinRoom={this.joinRoom}
         cheat={this.cheat}
@@ -112,6 +115,7 @@ export class RoomContainer extends Component {
         winner={winner}
         loser={loser}
       />
+      </div>
     );
   }
 }
