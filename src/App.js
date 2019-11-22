@@ -17,22 +17,22 @@ class App extends Component {
     // something that happens one time should be put here: showing messages
     this.stream.onmessage = event => {
       // event.preventDefault();
-      console.log("only once");
+      // console.log("only once");
       // the onmessage property catches the stream data that is sent to the client (what was passed to stream.send in the backend)
       const { data } = event; // each event has an ID and data
       const parsed = JSON.parse(data); // this is always an action object
-      console.log("parsed test:", parsed);
+      // console.log("parsed test:", parsed);
 
       const { id } = parsed;
-      console.log("id test:", id);
+      // console.log("id test:", id);
 
-      console.log("ids test:", this.ids);
+      // console.log("ids test:", this.ids);
 
       if (this.ids.includes(id)) {
-        console.log("old");
+        // console.log("old");
         console.warn("This action is duplicted:", parsed);
       } else {
-        console.log("new");
+        // console.log("new");
         this.ids.push(id);
 
         this.props.dispatch(parsed);

@@ -1,8 +1,53 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Col, Row } from "react-bootstrap";
+import EndgameContainer from "./EndgameContainer";
+
+function Coins(props) {
+  console.log("Coins props test:", props);
+  if (props.user) {
+    return (
+      <Col>
+        <p>
+          {props.user.name} has {props.user.coins} coins
+        </p>
+      </Col>
+    );
+  }
+
+  return <Col />;
+}
+
+function Decisions(props) {
+  if (!props.user || !props.cheat || !props.cooperate) {
+    console.warn("Decisions needs more data!");
+
+    return <Col />;
+  }
+
+  const buttons = !props.user.decision && (
+    <div>
+      <Button type="submit" onClick={props.cheat}>
+        Cheat
+      </Button>
+      <Button type="submit" onClick={props.cooperate}>
+        Cooperate
+      </Button>
+    </div>
+  );
+
+  const waiting = props.user.decision && <p>Waiting...</p>;
+
+  return (
+    <Col>
+      {buttons}
+      {waiting}
+    </Col>
+  );
+}
 
 export default function Room(props) {
+  console.log("Room props test:", props);
   // console.log("decision and rooms", props.decisions, props.rooms);
   // const list =
   //   props.users && props.users.length
@@ -17,29 +62,10 @@ export default function Room(props) {
     </Button>
   );
 
-  const user1 = props.joined && !props.userOneDecision && (
-    <div>
-      <Button type="submit" onClick={props.cheat}>
-        Cheat
-      </Button>
-      <Button type="submit" onClick={props.cooperate}>
-        Cooperate
-      </Button>
-    </div>
-  );
-  const userOneName = props.userOne && props.userOne.name;
-
-  const user2 = props.userTwo && !props.userTwoDecision && (
-    <div>
-      <Button type="submit" onClick={props.cheat}>
-        Cheat
-      </Button>
-      <Button type="submit" onClick={props.cooperate}>
-        Cooperate
-      </Button>
-    </div>
-  );
-  const userTwoName = props.userTwo && props.userTwo.name;
+  //  endgame
+  // const endgame = props.endgame && (
+  //   <EndgameContainer winner={props.winner} loser={props.loser} />
+  // );
 
   return (
     <Fragment>
@@ -48,37 +74,28 @@ export default function Room(props) {
 
       <Container>
         <Row>
-          <Col>
-            <p className={props.joined ? "visible" : "hidden"}>
-              {userOneName} has {props.userOneCoins} coins
-            </p>
-          </Col>
+          <Coins user={props.userOne} />
           <Col></Col>
-          <Col>
-            <p className={props.userTwo ? "visible" : "hidden"}>
-              {userTwoName} has {props.userTwoCoins} coins
-            </p>
-          </Col>
+          <Coins user={props.userTwo} />
         </Row>
         <Row>
-          <Col>
-            {user1}
-            <p className={props.userOneDecision ? "visible" : "hidden"}>
-              Waiting...
-            </p>
-          </Col>
+          <Decisions
+            user={props.userOne}
+            cheat={props.cheat}
+            cooperate={props.cooperate}
+          />
           <Col></Col>
-          <Col>
-            {user2}
-            <p className={props.userTwoDecision ? "visible" : "hidden"}>
-              Waiting...
-            </p>
-          </Col>
+          <Decisions
+            user={props.userTwo}
+            cheat={props.cheat}
+            cooperate={props.cooperate}
+          />
         </Row>
       </Container>
       <p>
         <Link to="/">Return</Link>
       </p>
+      {/* {endgame} */}
     </Fragment>
   );
 }
