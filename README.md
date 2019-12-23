@@ -39,7 +39,7 @@ Nobody can win or loose, you just can check - can you really trust your opponent
 ## Still to do
 
 - Make the app responsive!
-- Now the game works till 5 turns. Better to give choise to the user which amout if rounds does he want
+- Now the game works till 5 turns. Better if the user can choose which amount of rounds does he want
 - Add an option to play with computer if nobody want to join)
 
 ## Technologies used for this project
